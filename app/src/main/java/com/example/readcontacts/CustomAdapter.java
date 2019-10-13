@@ -12,11 +12,15 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter {
     private Context context;
     private ArrayList<ContactModel> contactModelArrayList;
+    private ArrayList<SmsModel> smsModelArrayList;
+//    private boolean isContact;
 
-    public CustomAdapter(Context context, ArrayList<ContactModel> contactModelArrayList) {
+    public CustomAdapter(Context context, ArrayList<ContactModel> contactModelArrayList,ArrayList<SmsModel> smsModelArrayList) {
 
         this.context = context;
         this.contactModelArrayList = contactModelArrayList;
+//        this.isContact=isContact; ,boolean isContact
+        this.smsModelArrayList=smsModelArrayList;
     }
 
     @Override
@@ -31,12 +35,23 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return contactModelArrayList.size();
+        if(contactModelArrayList!=null){
+            return contactModelArrayList.size();
+        }
+       else {
+            return smsModelArrayList.size();
+        }
     }
 
     @Override
     public Object getItem(int position) {
-        return contactModelArrayList.get(position);
+        if(contactModelArrayList!=null){
+            return contactModelArrayList.get(position);
+        }
+        else {
+            return smsModelArrayList.get(position);
+        }
+
     }
 
     @Override
@@ -62,9 +77,15 @@ public class CustomAdapter extends BaseAdapter {
             // the getTag returns the viewHolder object set as a tag to the view
             holder = (ViewHolder)convertView.getTag();
         }
+        if(contactModelArrayList!=null){
+            holder.tvname.setText(contactModelArrayList.get(position).getName());
+            holder.tvnumber.setText(contactModelArrayList.get(position).getNumber());
+        }
+        else {
+            holder.tvname.setText(smsModelArrayList.get(position).getAddress());
+            holder.tvnumber.setText(smsModelArrayList.get(position).getMessage());
+        }
 
-        holder.tvname.setText(contactModelArrayList.get(position).getName());
-        holder.tvnumber.setText(contactModelArrayList.get(position).getNumber());
 
         return convertView;
     }
