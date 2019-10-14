@@ -20,7 +20,7 @@ public class SmsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms_list);
 
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (ListView) findViewById(R.id.listViewSms);
 
         smsModelArrayList = new ArrayList<SmsModel>();
         Uri uriSMSURI = Uri.parse("content://sms/inbox");

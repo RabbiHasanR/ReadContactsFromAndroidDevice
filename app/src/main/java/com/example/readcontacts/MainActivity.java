@@ -37,4 +37,12 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    @OnClick(R.id.read_call_logs)
+    void readCallLogs(){
+        // Start the Signup activity
+        Log.d("Click3","yes");
+        Intent intent = new Intent(getApplicationContext(), CallLogListActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
